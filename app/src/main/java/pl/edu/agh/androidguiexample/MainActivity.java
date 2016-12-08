@@ -8,7 +8,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ToggleButton;
 
 public class MainActivity extends AppCompatActivity {
     private EditText editText;
@@ -47,7 +49,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+        ToggleButton toggleButton = (ToggleButton) findViewById(R.id.toggle);
+        toggleButton.setChecked(true);
+        toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean checked) {
+                if (checked) {
+                    editText.setEnabled(true);
+                } else {
+                    editText.setEnabled(false);
+                }
+            }
+        });
     }
 
     @Override
@@ -57,6 +70,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void clearTextField(MenuItem item) {
-        editText.setText(item.getTitle());
+        editText.setText(null);
     }
 }
